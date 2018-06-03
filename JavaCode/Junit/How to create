@@ -2,5 +2,6 @@ Create new fold in the same project.
 Create class test method and logic.  
   On the method, the top has @before which means before the programme this method will run first. 
   On the method, the top has @Test which mean you need write logic in these method.(you can create more method and plug @test)
+    We usually call functions that start with assert to judge.
 Run the JUnit and test project.
 Red is failing / Green is the pass.
