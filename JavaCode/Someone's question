@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
+public class method
+{
+	public static void main(String args[])
+	{
+		Map<String, Integer> map = new HashMap<>();
+		List<Map.Entry<String, Integer>> list = new ArrayList<>();
+		Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String, Integer>>()
+		{
+			@Override
+			public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2)
+			{
+				// TODO Auto-generated method stub
+				return o1.getValue() - o2.getValue();
+			}
+		};
+		int i = 0;
+		do
+		{
+			int j = (int) (Math.random() * 100);
+
+			map.put("放入業務員的名字" + i, j); // 1 == 業績,請自行更換
+			i++;
+		}
+		while (i < 11);
+		list.addAll(map.entrySet());
+		Collections.sort(list, valueComparator);
+		for (Map.Entry<String, Integer> entry : list)
+		{
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		}
+		System.out.println(Arrays.toString(list.toArray()));
+	}
+
+}
