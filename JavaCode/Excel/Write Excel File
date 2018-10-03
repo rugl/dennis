@@ -1,0 +1,74 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Scanner;
+
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+//A class just can write the data to excel file by POI 4.0
+//Note : You need download the (commons-compress-"version".jar) with the other .jar file which under the POI 4.0 file.
+//Total jar file names are here (commons-condec, commons-collection, commons-logging, xmlbeans, poi, poi-ooxml, poi-ooxml-schemas)
+public class WriteExcelFile
+{
+	
+	@SuppressWarnings ( "resource" )
+	public static void main( String[ ] args )
+	{
+		String[ ][ ] s =
+		{
+				{ "1", "2", "3", "4", "5" },
+				{ "11", "22", "33", "44", "55" } };
+		WriteExcelFile wef = new WriteExcelFile( );
+		Scanner scanner = new Scanner(System.in);
+		wef.outputToExcel( scanner.toString( ), s );
+	}
+	
+	@SuppressWarnings ( "resource" )
+	private void outputToExcel( String fileName, String[ ][ ] data )
+	{
+		XSSFRow row;
+		try
+		{
+			FileOutputStream out = new FileOutputStream( new File( "C:\\" + fileName + ".xlsx" ) );
+			XSSFWorkbook book = new XSSFWorkbook( );
+			XSSFSheet sheet = book.createSheet( "Sheet1" );
+			XSSFCellStyle style0 = book.createCellStyle( );
+			style0.setWrapText( true );
+			row = sheet.createRow( 0 );
+			row.setHeight( ( short ) 2560 );
+			for ( int i = 0; i < 11; i++ )
+			{//set style in the row(0)(1) to row(0)(10) 
+				row.getCell( i ).setCellStyle( style0 );
+			}
+			
+			for ( int i = 1; i <= data[ 0 ].length; i++ )
+			{// row
+				row = sheet.createRow( ( short ) i );
+				row.createCell( 0 ).setCellValue( data[ 1 ][ i - 1 ] );
+				row.createCell( 1 ).setCellValue( data[ 0 ][ i - 1 ] );
+				out.flush( );
+				row = null;
+			}
+			//set the column width ( column , width). 
+			// width = 256 * ?
+			sheet.setColumnWidth( 0, 12800 );
+			sheet.setColumnWidth( 1, 7680 );
+			sheet.setColumnWidth( 2, 2560 );
+			sheet.setColumnWidth( 3, 12800 );
+			sheet.setColumnWidth( 4, 2560 );
+			sheet.setColumnWidth( 5, 2560 );
+			sheet.setColumnWidth( 6, 2560 );
+			sheet.setColumnWidth( 7, 2560 );
+			sheet.setColumnWidth( 8, 2560 );
+			sheet.setColumnWidth( 9, 2560 );
+			sheet.setColumnWidth( 10, 2560 );
+			
+			book.write( out );
+			out.close( );
+		} catch ( Exception e )
+		{
+		}
+	}
+}
