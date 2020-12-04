@@ -1,0 +1,56 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode answer = new ListNode();
+        int carryBit = 0;
+
+        while (l1 != null || l2 != null) {
+            // Calculate sum
+            int sum = carryBit;
+            if (l1 != null) sum += l1.val;
+            if (l2 != null) sum += l2.val;
+
+            // Calculate carryBit
+            if (sum >= 10) carryBit = 1;
+            else carryBit = 0;
+
+            // Find tail of ListNode & set Value
+            ListNode tail = findTailNode(answer);
+            tail.val = sum % 10;
+
+            // go to nextNode
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+
+            // if exist nextNode at least one of l1, l2, then create nextNode
+            if (l1 != null || l2 != null) {
+                tail.next = new ListNode();
+            } // if not exist nextNode both of l1, l2, then nextNode to be null
+            else if (sum < 10) {
+                tail.next = null;
+            } // if not exist nextNode both of l1, l2, but exist carryBit?
+            // then create nextNode with val(1)
+            else {
+                tail.next = new ListNode(1);
+            }
+        }
+
+        return answer;
+    }
+
+    public ListNode findTailNode(ListNode node) {
+        while (node.next != null) node = node.next;
+        return node;
+    
+        
+    }
+}
