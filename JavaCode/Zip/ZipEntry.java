@@ -118,7 +118,7 @@ public class ZipEntry
 					name = name.substring( 0, name.length( ) - 1 );
 					File f = new File( outputDirectory + File.separator + name );
 					f.mkdir( );
-					System.out.println( "Create the directory¡G" + outputDirectory + File.separator + name );
+					System.out.println( "Create the directoryÂ¡G" + outputDirectory + File.separator + name );
 				} else
 				{
 					String fileName = zipEntry.getName( );
