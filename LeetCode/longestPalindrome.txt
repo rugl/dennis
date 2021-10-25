@@ -1,0 +1,39 @@
+public static String longestPalindrome( String s )
+	{
+		String[ ] str = s.split( "" );
+		String sr = new StringBuffer( s ).reverse( ).toString( );
+        String res = "";
+		int end = str.length;
+		
+		if ( s.length( ) == 1 ) return s;
+        else if (s.contains( new StringBuffer(s).reverse().toString( ) )) return s;
+		else
+		{
+			for ( int i = 0; i < s.length( ); i++ )
+			{
+				if ( end != s.lastIndexOf( str[ i ] ) ) end = s.lastIndexOf( str[ i ] );
+				if ( end > 0 && end - i >= 1 )
+				{
+					do
+					{
+						if ( sr.contains( s.substring( i, end + 1 ) ) )
+						{
+							if ( s.substring( i, end + 1 )
+									.equals( new StringBuffer( s.substring( i, end + 1 ) ).reverse( ).toString( ) )
+									&& s.substring( i, end + 1 ).length( ) > res.length( ) )
+								res = s.substring( i, end + 1 );
+							else break;
+						} else
+						{
+							end = s.substring( i, end ).lastIndexOf( str[ i ] ) + i;
+						}
+						
+					} while ( end - i >= 1 );
+				}
+				
+				end = s.length( );
+			}
+		}
+		if ( res.length( ) > 0 ) return res;
+		return str[ 0 ];
+    }
