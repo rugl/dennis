@@ -1,0 +1,40 @@
+public String convert( String s, int numRows )
+	{
+		System.out.println( s );
+		
+		int count = 0;
+		
+		StringBuffer sb[] = new StringBuffer[ numRows ];
+		StringBuffer sbT = new StringBuffer( );
+		
+		for ( int i = 0; i < numRows; i++ )
+		{
+			sb[ i ] = new StringBuffer( );
+		}
+		if ( s == null || numRows <= 0 ) throw new IllegalArgumentException( "Input is invalid" );
+		else if ( s.length( ) < 1 || s.length( ) <= numRows ) return s;
+		// else if ( s.length( ) % ( numRows + numRows - 2 ) == 0 ) return "The length
+		// can't split the " + numRows;
+		else
+		{
+			for ( int i = 0; i < numRows; i++ )
+			{
+				for ( int j = 0; j < new BigDecimal( s.length( ) )
+						.divide( new BigDecimal( 2 * numRows - 2 ), BigDecimal.ROUND_UP ).intValue( ); j++ )
+				{
+					if ( 0 < j && count != 0 && count != numRows - 1 && ( 2 * j * ( numRows - 1 ) + i - 2 * count ) <= s.length( ) )
+						sb[ i ].append( s.charAt( 2 * j * ( numRows - 1 ) + i - 2 * count ) );
+					if ( ( 2 * j * ( numRows - 1 ) + i ) < s.length( ) )
+						sb[ i ].append( s.charAt( 2 * j * ( numRows - 1 ) + i ) );
+				}
+				count++;
+			}
+		}
+		
+		for ( StringBuffer sbf : sb )
+		{
+			sbT.append( sbf.toString( ) + " " );
+		}
+		System.out.println( sbT.toString( ) );
+		return sbT.toString( );
+	}
