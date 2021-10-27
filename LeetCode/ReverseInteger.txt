@@ -1,0 +1,22 @@
+public int reverse(int x) {
+       {
+		if ( String.valueOf( Math.abs( x ) ).length( ) < 2 ) // ?????????????
+			return x;
+		else if ( x >= Integer.MAX_VALUE || x <= Integer.MIN_VALUE ) return 0;
+		Boolean bo = true;
+		long reverse = 0; // ???? int???????
+		
+		StringBuffer sb = new StringBuffer( String.valueOf( Math.abs( x ) ) );
+		
+		if ( Integer.signum( x ) == -1 )
+			bo = false;
+
+		
+		reverse = Long.parseLong( sb.reverse( ).toString( ) );
+		
+		if ( !bo ) reverse = Long.parseLong("-"+ sb.toString( ) );
+		
+		if ( reverse > Integer.MAX_VALUE || reverse < Integer.MIN_VALUE ) return 0; // ???????0
+		
+		return ( int ) reverse; // ?????
+	}
