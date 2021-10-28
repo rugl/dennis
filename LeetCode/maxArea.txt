@@ -1,0 +1,15 @@
+public int maxArea(int[] height) {
+		
+		int low = 0;
+		int hig = height.length - 1;
+		List<Integer> ar = new ArrayList< Integer >( );
+		
+		while ( hig > low )
+		{
+			ar.add(Math.abs( hig - low ) * Math.min( height[ low ], height[ hig ] )); 
+			if ( height[ low ] > height[ hig ] ) hig--;
+			else low++;
+		}
+		Collections.sort(ar);
+		return ar.get( height.length - 2 );
+    }
