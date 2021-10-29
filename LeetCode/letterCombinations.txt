@@ -1,0 +1,42 @@
+public static List< String > letterCombinations( String digits )
+	{
+		HashMap< String, String > map = new HashMap< String, String >( );
+		String regEx = "10*#";
+		List< String > ls = new ArrayList< String >( );
+		
+		String digiE = digits.replaceAll( regEx, "" );
+		
+		map.put( "2", "abc" );
+		map.put( "3", "def" );
+		map.put( "4", "ghi" );
+		map.put( "5", "jkl" );
+		map.put( "6", "mno" );
+		map.put( "7", "pqrs" );
+		map.put( "8", "tuv" );
+		map.put( "9", "wxyz" );
+		
+		if ( digiE.isEmpty( ) ) return ls;
+		else if ( digiE.length( ) > 4 ) return ls;
+		else if ( digiE.length( ) == 1 ) ls = Arrays.asList( map.get( digiE ).split( "" ) );
+		else ls = callBack( new StringBuffer( ), digiE.split( "" ), 0, map, new ArrayList< String >( ) );
+		return ls;
+		
+	}
+	
+	private static List< String > callBack( StringBuffer sb, String[ ] dig, int index, HashMap map,
+			List< String > mapNum )
+	{
+		int i = 0;
+		while ( i < map.get( dig[ index ] ).toString( ).length( ) )
+		{
+			sb.append( map.get( dig[ index ] ).toString( ).split( "" )[ i ] );
+			// First do get the index 0 chart until deep to last one number of input(digits)
+			if ( index + 1 < dig.length ) callBack( sb, dig, index + 1, map, mapNum );
+			// Second do check when the element do finished, add it to List<String> then
+			// return
+			if ( sb.length( ) == dig.length ) mapNum.add( sb.toString( ) );
+			sb.delete( sb.length( ) - 1, sb.length( ) );
+			i++;
+		}
+		return mapNum;
+	}
