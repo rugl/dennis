@@ -1,0 +1,6 @@
+Linux (bash)
+export MAVEN_OPTS="-DsocksProxyHost=10.10.10.10 -DsocksProxyPort=8080"
+
+
+Windows
+set MAVEN_OPTS="-DsocksProxyHost=10.10.10.10 -DsocksProxyPort=8080"
