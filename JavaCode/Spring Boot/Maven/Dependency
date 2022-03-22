@@ -1,0 +1,8 @@
+For Example in pom.xml
+<dependency>
+        <groupId>com.sample</groupId>
+        <artifactId>sample</artifactId>
+        <version>1.0</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/src/main/resources/yourJar.jar</systemPath>
+</dependency>
