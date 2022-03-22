@@ -1,0 +1,11 @@
+vim $MAVEN_HOME/conf/settings.xml
+<proxies>
+        <proxy>
+        <id>socks-proxy</id>
+        <active>true</active>
+        <protocol>socks5</protocol>
+        <host>127.0.0.1</host>
+        <port>1080</port>
+        <nonProxyHosts>*.**.com</nonProxyHosts>
+        </proxy>
+</proxies>
